@@ -1,0 +1,11 @@
+{
+	"Project": "141 Chrystie Street",
+	"Borough": "Manhattan",
+	"Zoning": "C6_3A",
+	"Street": "Wide",
+	"Corner": [16.39],
+	"Site0": [0, 0],
+	"Site1": [23.08, 0],
+	"Site2": [23.08, 105.5],
+	"Site3": [0, 105.5]
+}

@@ -1,0 +1,280 @@
+/* 
+  /// NOTES ///
+  .className
+  # is for elements with id
+  (nothing) tagName
+  {} attribute selectors
+*/
+
+:root {
+  --pp-color-pink: #E36A97;
+  --pp-color-blue: #6DD3CE;
+  --pp-color-green: #C8E9A0;
+  --pp-color-almond: #ECE2D0;
+  --pp-color-silver: #CEBEBE;
+  --pp-color-black: #172C36;
+  --pp-color-grey: #808080;
+
+  --doc-height-overall: 800px;
+  --doc-height-tab-container: 160px;
+  --doc-height-tab: 50px;
+  --doc-height-data: 80px;
+  --doc-height-content: calc( var(--doc-height-overall) 
+                            - var(--doc-height-tab-container) 
+                            - (var(--doc-height-tab) * 2) );
+
+  --doc-width-overall: 500px;
+  --doc-width-tab: calc( var(--doc-width-overall) / 3);
+  --doc-width-content: calc( var(--doc-width-overall) / 5 * 2);
+  --doc-width-icon: calc( var(--doc-width-overall) / 6);
+  --doc-width-data: calc( var(--doc-width-overall) / 3);
+}
+
+.App {
+  text-align: center;
+  position: fixed;
+  left: 40px;
+  top: 150px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Panel {
+  height: var(--doc-height-overall);
+  width: var(--doc-width-overall);
+	background-color: var(--pp-color-silver);
+	font-size: 22px;
+	margin: 50px auto;
+	border-radius: 16px;
+}
+
+.Panel header {
+  height: var(--doc-height-tab);
+	background-color: var(--pp-color-pink);
+  color: #172C36;
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+
+	font-size: 36px;
+	text-transform: uppercase;
+	text-align: left;
+	padding-left: 20px;
+}
+
+.tab-container {
+  height: var(--doc-height-tab-container);
+  background-color: var(--pp-color-blue);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row wrap;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.Panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Panel ul.tab-container > li {
+  height: var(--doc-height-tab);
+  width: var(--doc-width-tab);
+
+  line-height: 45px;
+  color: #808080;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+}
+
+.Panel ul.tab-container > li.active {
+  background-color: var(--pp-color-blue);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.Panel ul.tab-container > li.inactive {
+  background-color: var(--pp-color-green);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.Panel ul.tab-container > li.tab-content {
+  background-color: antiquewhite;
+  height: var(--doc-height-data);
+  width: var(--doc-width-content);
+
+  text-align: left;
+  padding-left: 15px;
+  line-height: var(--doc-height-data);
+
+  color: var(--pp-color-grey);
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.Panel ul.tab-container > li.tab-icon {
+  background-color: aquamarine;
+  height: var(--doc-height-data);
+  width: var(--doc-width-icon);
+}
+
+.Panel ul.tab-container > li.tab-data {
+  background-color: aquamarine;
+  height: var(--doc-height-data);
+  width: var(--doc-width-data);
+
+  display: -webkit-flex;
+  flex-direction: row;
+}
+
+.Panel ul li.data {
+  background-color: var(--pp-color-green);
+  width: var(--doc-width-data);
+
+  line-height: 12px;
+  color: var(--pp-color-grey);
+  font-weight: bold;
+  font-size: 12px;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.Panel .PanelContent {
+	height: var(--doc-height-content);
+}
+
+.Panel footer .FooterContent {
+	height: var(--doc-height-tab);
+	background-color: var(--pp-color-pink);
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+  line-height: 45px;
+}
+
+/*
+/// SLIDER THUMB
+*/
+
+.PanelContent input[type="range"] { 
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent;
+}
+
+.PanelContent input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #172C36;
+  height: 20px;
+  width: 8px;
+  border-radius: 3px;
+  background: #172C36;
+  cursor: pointer;
+  margin-top: -10px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/*
+.PanelContent input[type=range]:focus {
+  outline: none;
+}
+*/
+
+.PanelContent input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+/*
+/// SLIDER TRACK
+*/
+
+.PanelContent input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  background: #808080;
+  border-radius: 2px;
+  border: 2px solid #808080;
+}
+
+.PanelContent input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #000000;
+}
+
+.PanelContent input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  background: #808080;
+  border-radius: 2px;
+  border: 2px solid #808080;
+}
+
+/*
+/// REFERENCE ///
+*/
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-direction: row; /* | row-reverse | column | column-reverse; */
+  flex-wrap: nowrap; /* | wrap | wrap-reverse; */
+  flex-flow: row-reverse wrap; /* || <‘flex-wrap’>; */
+  justify-content: flex-start; /* | flex-end | center | space-between | space-around | space-evenly; */
+  align-items: flex-start; /* | flex-end | center | baseline | stretch; */
+  align-content: flex-start; /* | flex-end | center | space-between | space-around | stretch; */
+}
+
+.item {
+  order: 0; /* default is 0 */
+  flex-grow: 0; /* default 0 */
+  flex-shrink: 1; /* default 1 */
+  flex-basis: auto; /* default auto or <length> */
+  flex: none; /* | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]; */
+  align-self: auto /* | flex-start | flex-end | center | baseline | stretch; */
+
+}
+
+/*
+.Slider col-12 dark-gray range-light
+CustomSlider.defaultProps = {
+  barHeight: 10,
+  barColor: 'blue',
+  increment: 1,
+  high: 50,
+  leftColor: 'rgba(0,0,0,0.3)',
+  low: 3,
+  max: 10,
+  min: 0,
+  onChange: () => {},
+  railHeight: 40,
+  railColor: 'red',
+  rangeColor: 'rgba(0,255,0,0.5)',
+  rightColor: 'rgba(0,0,0,0.7)',
+  thumbColor: 'rgba(0,255,0,0.5)',
+  thumbRadius: 30,
+  thumbWidth: 30,
+};
+*/

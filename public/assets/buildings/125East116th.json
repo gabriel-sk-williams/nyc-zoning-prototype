@@ -1,0 +1,12 @@
+{
+	"Project": "125 E 116th St",
+	"Borough": "Manhattan",
+	"Zoning": "R7_2",
+	"Overlay": "C1_4",
+	"Street": "Wide",
+	"Corner": [16.39],
+	"Site0": [0, 0],
+	"Site1": [100.0, 0],
+	"Site2": [100.0, 100.92],
+	"Site3": [0, 100.92]
+}

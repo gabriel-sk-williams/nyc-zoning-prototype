@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Adaptive (2018 Alpha Build)</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="stylesheet" type="text/css" href="loadingpage.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="google-site-verification" content="Ajs_juqYkaFU_6WW7H_LrEU9yzUp9WM9gGHiQbwfh8c" />
+  </head>
+
+  <body>
+    
+    <div id="loading"></div>
+    
+    <script type="application/javascript" src="assets/js/lib/three.min.js"></script>
+    <script type="application/javascript" src="assets/js/lib/three.OBJLoader.js"></script>
+    <script type="application/javascript" src="assets/js/lib/dat.gui.min.js"></script>
+    <script type="application/javascript" src="assets/js/lib/jquery.min.js"></script>
+    <script type="application/javascript" src="assets/js/lib/Detector.js"></script>
+    <script type="application/javascript" src="assets/js/lib/controls/OrbitControls.js"></script>
+    <script src="assets/js/shaders/CopyShader.js"></script>
+    <script src="assets/js/shaders/BokehShader.js"></script>
+    <script src="assets/js/postprocessing/EffectComposer.js"></script>
+    <script src="assets/js/postprocessing/SSAARenderPass.js"></script>
+    <script src="assets/js/postprocessing/RenderPass.js"></script>
+    <script src="assets/js/postprocessing/ShaderPass.js"></script>
+    <script src="assets/js/postprocessing/MaskPass.js"></script>
+    <script src="assets/js/postprocessing/BokehPass.js"></script>
+
+    <script type="x-shader/x-vertex" id="vertexShader">
+      varying vec3 vWorldPosition;
+
+      void main() {
+
+        vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
+        vWorldPosition = worldPosition.xyz;
+
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+      }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentShader">
+      uniform vec3 topColor;
+      uniform vec3 bottomColor;
+      uniform float offset;
+      uniform float exponent;
+      varying vec3 vWorldPosition;
+
+      void main() {
+
+        float h = normalize( vWorldPosition + offset ).y;
+        gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( max( h , 0.0), exponent ), 0.0 ) ), 1.0 );
+      }
+    </script>
+
+    <script type="application/javascript" src="assets/js/viewer.js"></script>
+    <div id="root"></div>
+  </body>
+</html>

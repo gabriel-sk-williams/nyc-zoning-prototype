@@ -1,0 +1,11 @@
+{
+	"Project": "961 2nd Avenue",
+	"Borough": "Manhattan",
+	"Zoning": "C1_9",
+	"Street": "Wide",
+	"Corner": [0.00],
+	"Site0": [0, 0],
+	"Site1": [100.42, 0],
+	"Site2": [100.42, 80.0],
+	"Site3": [0, 80.0]
+}
